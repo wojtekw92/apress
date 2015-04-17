@@ -1,15 +1,18 @@
-var APRESS = (function(){
+var apress = (function(){
   var routes = [];
   /*
-  objects inside {
-    route:
-    callback:
-  }
-  in route
-  % if we wont to get this value as varible
-  * if we don't care
 
+  objects inside {
+    route: string describing the route
+    regexp: PRIVATE regexp constructed to match the route
+    callback: function called on route match
+  }
+
+  special characters that can be used in the route description
+  % return this to the callback
+  * match everything but ignore it
   */
+  
   var setup = {
     storage: false,  // use storage api for storing last route
     routingEnable: true, // enable/disable routing
@@ -44,6 +47,6 @@ var APRESS = (function(){
   //API for router
   return {
     addRoute: addRoute,
-    hashTest: hashTest
+    hashTest: hashTest,
   };
 })();
