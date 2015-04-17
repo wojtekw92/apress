@@ -19,24 +19,22 @@ var routeLib = (function(){
       var hash = window.location.hash;
       hash = hash.replace('#','');
       for(var i = 0; i< routes.length; i++) {
-        var route = routes[i].route.replace('/','\\/');
-        route = route.replace('*','[\\w-]+');
-        route = route.replace('%','([\\w-]+)');
-        var re = new RegExp(route,'i');
-        var resualt = re.exec(hash);
+        var resualt = routes[i].regexp.exec(hash);
         if(resualt != null) {
           resualt = resualt.slice(1);
           routes[i].callback.apply(this, resualt);
           break;
         }
       }
-      //console.log(hash);
-
     }
   }
   window.onhashchange = hashTest;
   var addRoute = function(route, callback) {
+    var reg = route.replace('/','\\/');
+    reg = reg.replace('*','[\\w-]+');
+    reg = reg.replace('%','([\\w-]+)');
     routes.push({'route': route,
+                 'regexp': new RegExp(reg,'i'),
                  'callback': callback});
   }
   //API for router
