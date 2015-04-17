@@ -1,4 +1,4 @@
-routeLib.addRoute('ala/ma',function(){alert('ala');});
-routeLib.addRoute('wykonaj/*/alert/%',function(param){alert(param);});
-routeLib.addRoute('alert/%',function(param){alert(param);});
-routeLib.hashTest();
+apress.addRoute('ala/ma',function(){alert('ala');});
+apress.addRoute('wykonaj/*/alert/%',function(param){alert(param);});
+apress.addRoute('alert/%',function(param){alert(param);});
+apress.hashTest();
