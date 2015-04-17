@@ -1,4 +1,4 @@
-var routeLib = (function(){
+var APRESS = (function(){
   var routes = [];
   /*
   objects inside {
@@ -11,8 +11,8 @@ var routeLib = (function(){
 
   */
   var setup = {
-    storage: false,  //USE storage api for storeing last route
-    routingEnable: true, //You can disable router lib
+    storage: false,  // use storage api for storing last route
+    routingEnable: true, // enable/disable routing
   };
 
   var hashTest = function () {
@@ -31,7 +31,7 @@ var routeLib = (function(){
   };
 
   window.onhashchange = hashTest;
-  
+
   var addRoute = function(route, callback) {
     var reg = route.replace('/','\\/');
     reg = reg.replace('*','[\\w-]+');
