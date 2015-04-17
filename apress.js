@@ -2,8 +2,9 @@ var routeLib = (function(){
   var routes = [];
   /*
   objects inside {
-    route:
-    callback:
+    route: string with route
+    regexp: route changed to th regexp object
+    callback: callback function started when route is ok
   }
   in route
   % if we wont to get this value as varible
@@ -19,10 +20,10 @@ var routeLib = (function(){
       var hash = window.location.hash;
       hash = hash.replace('#','');
       for(var i = 0; i< routes.length; i++) {
-        var resualt = routes[i].regexp.exec(hash);
-        if(resualt != null) {
-          resualt = resualt.slice(1);
-          routes[i].callback.apply(this, resualt);
+        var results = routes[i].regexp.exec(hash);
+        if(results != null) {
+          results = results.slice(1);
+          routes[i].callback.apply(this, results);
           break;
         }
       }
@@ -40,6 +41,6 @@ var routeLib = (function(){
   //API for router
   return {
     addRoute: addRoute,
-    hashTest: hashTest
+    hashTest: hashTest,
   };
 })();
