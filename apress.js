@@ -12,7 +12,7 @@ var apress = (function(){
   % return this to the callback
   * match everything but ignore it
   */
-  
+
   var setup = {
     storage: false,  // use storage api for storing last route
     routingEnable: true, // enable/disable routing
@@ -44,9 +44,14 @@ var apress = (function(){
                  'callback': callback});
   };
 
+  var setRoute = function(route) {
+    window.location.hash = '#' + route;
+  }
+
   //API for router
   return {
     addRoute: addRoute,
     hashTest: hashTest,
+    setRoute: setRoute,
   };
 })();
