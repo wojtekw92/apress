@@ -22,6 +22,7 @@ var apress = (function(){
     if(setup.routingEnable) {
       var hash = window.location.hash;
       hash = hash.replace('#','');
+      if (hash.length < 1) hash = '/';
       for(var i = 0; i< routes.length; i++) {
         var result = routes[i].regexp.exec(hash);
         if(result !== null) {
@@ -40,7 +41,7 @@ var apress = (function(){
     reg = reg.replace('*','[\\w-]+');
     reg = reg.replace('%','([\\w-]+)');
     routes.push({'route': route,
-                 'regexp': new RegExp(reg,'i'),
+                 'regexp': new RegExp(reg+'$','i'),
                  'callback': callback});
   };
 
