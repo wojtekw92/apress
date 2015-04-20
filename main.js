@@ -9,8 +9,12 @@ apress.addRoute('/run/*/alert/%',function(param){
   alert(param);
   });
 apress.addRoute('/alert/%',function(param){
-
   document.getElementById('content').innerHTML = '/alert/' + param;
   alert(param);
+  });
+apress.setErrorPage(function(){
+
+  document.getElementById('content').innerHTML = '<h1>ERROR 404!</h1>Page <b>' +
+  apress.getRoute() + '</b> doesn\'t exist!';
   });
 apress.hashTest();

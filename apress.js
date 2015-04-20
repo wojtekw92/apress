@@ -16,10 +16,12 @@ var apress = (function(){
   var setup = {
     storage: false,  // use storage api for storing last route
     routingEnable: true, // enable/disable routing
+    error404: function(){},
   };
 
   var hashTest = function () {
     if(setup.routingEnable) {
+      var routeExist = false;
       var hash = window.location.hash;
       hash = hash.replace('#','');
       if (hash.length < 1) hash = '/';
@@ -27,9 +29,13 @@ var apress = (function(){
         var result = routes[i].regexp.exec(hash);
         if(result !== null) {
           result = result.slice(1);
+          routeExist = true;
           routes[i].callback.apply(this, result);
           break;
         }
+      }
+      if (!routeExist) {
+        setup.error404();
       }
     }
   };
@@ -47,12 +53,20 @@ var apress = (function(){
 
   var setRoute = function(route) {
     window.location.hash = '#' + route;
-  }
+  };
+  var getRoute = function() {
+    return window.location.hash.replace('#','');
+  };
 
+  var setErrorPage = function(errorFunction) {
+    setup.error404 = errorFunction;
+  };
   //API for router
   return {
     addRoute: addRoute,
     hashTest: hashTest,
     setRoute: setRoute,
+    getRoute: getRoute,
+    setErrorPage, setErrorPage,
   };
 })();
