@@ -43,12 +43,18 @@ var apress = (function(){
   window.onhashchange = hashTest;
 
   var addRoute = function(route, callback) {
-    var reg = route.replace('/','\\/');
-    reg = reg.replace('*','[\\w-]+');
-    reg = reg.replace('%','([\\w-]+)');
-    routes.push({'route': route,
-                 'regexp': new RegExp(reg+'$','i'),
-                 'callback': callback});
+    if (typeof(route) === 'string') {
+      var reg = route.replace('/','\\/');
+      reg = reg.replace('*','[\\w-]+');
+      reg = reg.replace('%','([\\w-]+)');
+      routes.push({'route': route,
+                   'regexp': new RegExp('^'+reg+'[\\/?]?$','i'),
+                   'callback': callback});
+    } else {
+      routes.push({'route': '',
+      'regexp': route,
+      'callback': callback});
+    }
   };
 
   var setRoute = function(route) {
@@ -67,6 +73,6 @@ var apress = (function(){
     hashTest: hashTest,
     setRoute: setRoute,
     getRoute: getRoute,
-    setErrorPage, setErrorPage,
+    setErrorPage: setErrorPage,
   };
 })();
