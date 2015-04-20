@@ -15,6 +15,12 @@ if we wont to force check the route for example when page is loading we can use
 ```
 apress.hashTest();
 ```
+###API
+`apress.addRoute(route,callback)` - adding route, route can be string or regexp
+`apress.hashTest()`- manual trigger of checking hash
+`apress.setRoute(route)` - setting new route manually
+`apress.getRoute()` -get actual route
+`apress.setErrorPage(function)` - set function which is trigger when it cant find route
 ##what to do next
 
 ##why apress?
