@@ -23,7 +23,7 @@ var apress = (function(){
     if(setup.routingEnable) {
       var routeExist = false;
       var hash = window.location.hash;
-      hash = hash.replace('#','');
+      hash = hash.replace('#!','');
       if (hash.length < 1) hash = '/';
       for(var i = 0; i< routes.length; i++) {
         var result = routes[i].regexp.exec(hash);
@@ -58,10 +58,10 @@ var apress = (function(){
   };
 
   var setRoute = function(route) {
-    window.location.hash = '#' + route;
+    window.location.hash = '#!' + route;
   };
   var getRoute = function() {
-    return window.location.hash.replace('#','');
+    return window.location.hash.replace('#!','');
   };
 
   var setErrorPage = function(errorFunction) {
