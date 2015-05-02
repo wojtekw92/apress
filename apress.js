@@ -57,7 +57,14 @@ var apress = (function(){
     }
   };
 
-  var setRoute = function(route) {
+  var setRoute = function(route, redirect) {
+    if(!redirect) {
+      lock(true);
+      window.onhashchange = function() {
+        lock(false);
+        window.onhashchange = hashTest;
+      }
+    }
     window.location.hash = '#!' + route;
   };
   var getRoute = function() {
@@ -67,12 +74,16 @@ var apress = (function(){
   var setErrorPage = function(errorFunction) {
     setup.error404 = errorFunction;
   };
+  var lock = function (lock) {
+    setup.routingEnable = !lock;
+  }
   //API for router
   return {
     addRoute: addRoute,
     hashTest: hashTest,
     setRoute: setRoute,
     getRoute: getRoute,
+    lock: lock,
     setErrorPage: setErrorPage,
   };
 })();

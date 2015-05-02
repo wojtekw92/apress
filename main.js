@@ -12,6 +12,9 @@ apress.addRoute('/alert/%',function(param){
   document.getElementById('content').innerHTML = '/alert/' + param;
   alert(param);
   });
+apress.addRoute('/change/route',function(param){
+  apress.setRoute('/change/route/new', false);
+});
 apress.setErrorPage(function(){
   document.getElementById('content').innerHTML = '<h1>ERROR 404!</h1>Page <b>' +
   apress.getRoute() + '</b> doesn\'t exist!';
