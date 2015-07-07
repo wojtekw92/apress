@@ -1,0 +1,17 @@
+{
+  "name": "apress",
+  "main": "apress.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wojtekw92/apress",
+  "authors": [
+    "Wojciech Woźniak <wwozniak92@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
