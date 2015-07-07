@@ -20,7 +20,7 @@
   "regexdash": true,
   "laxcomma": true,
   "proto": true,
-  "node": true,
+  "browser": true,
   "devel": true,
   "nonstandard": true,
   "worker": true
