@@ -1,3 +1,6 @@
+'use strict';
+/* exported apress */
+
 var apress = (function(){
   var routes = [];
   /*
@@ -24,7 +27,9 @@ var apress = (function(){
       var routeExist = false;
       var hash = window.location.hash;
       hash = hash.replace('#','');
-      if (hash.length < 1) hash = '/';
+      if (hash.length < 1) {
+        hash = '/';
+      }
       for(var i = 0; i< routes.length; i++) {
         var result = routes[i].regexp.exec(hash);
         if(result !== null) {
