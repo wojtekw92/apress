@@ -56,7 +56,7 @@ var apress = (function(){
                    'regexp': new RegExp('^'+reg+'[\\/?]?$','i'),
                    'callback': callback});
     } else {
-      routes.push({'route': '',
+      routes.push({'route': route.toString(),
       'regexp': route,
       'callback': callback});
     }
