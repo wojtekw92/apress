@@ -27,7 +27,7 @@ var apress = (function(){
     if(setup.routingEnable) {
       var routeExist = false;
       var hash = window.location.hash;
-      hash = hash.replace('!#','');
+      hash = hash.replace('#!','');
       if (hash.length < 1) {
         hash = '/';
       }
