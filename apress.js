@@ -27,7 +27,7 @@ var apress = (function(){
     if(setup.routingEnable) {
       var routeExist = false;
       var hash = window.location.hash;
-      hash = hash.replace('#','');
+      hash = hash.replace('!#','');
       if (hash.length < 1) {
         hash = '/';
       }
@@ -67,15 +67,26 @@ var apress = (function(){
     }
   };
 
-  var setRoute = function(route) {
-    window.location.hash = '#' + route;
+  var setRoute = function(route, redirect) {
+    if(!redirect) {
+      lock(true);
+      window.onhashchange = function() {
+        lock(false);
+        window.onhashchange = hashTest;
+      };
+    }
+    window.location.hash = '#!' + route;
   };
   var getRoute = function() {
-    return window.location.hash.replace('#','');
+    return window.location.hash.replace('#!','');
   };
 
   var setErrorPage = function(errorFunction) {
     setup.error404 = errorFunction;
+  };
+
+  var lock = function (lock) {
+    setup.routingEnable = !lock;
   };
 
   window.onhashchange = hashTest;
@@ -86,6 +97,7 @@ var apress = (function(){
     hashTest: hashTest,
     setRoute: setRoute,
     getRoute: getRoute,
+    lock: lock,
     setErrorPage: setErrorPage,
   };
 })();
