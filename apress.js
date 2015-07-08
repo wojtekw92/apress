@@ -3,8 +3,8 @@
 
 var apress = (function(){
   var routes = [];
-  /*
 
+  /*
   objects inside {
     route: string describing the route
     regexp: PRIVATE regexp constructed to match the route
@@ -12,8 +12,9 @@ var apress = (function(){
   }
 
   special characters that can be used in the route description
-  % return this to the callback
-  * match everything but ignore it
+  % pass parameter on that position to the callback
+  * wildcard that matches everything
+
   */
 
   var setup = {
@@ -30,7 +31,7 @@ var apress = (function(){
       if (hash.length < 1) {
         hash = '/';
       }
-      for(var i = 0; i< routes.length; i++) {
+      for(var i = 0, l = routes.length; i < l ; i++) {
         var result = routes[i].regexp.exec(hash);
         if(result !== null) {
           result = result.slice(1);
@@ -45,20 +46,22 @@ var apress = (function(){
     }
   };
 
-  window.onhashchange = hashTest;
-
   var addRoute = function(route, callback) {
-    if (typeof(route) === 'string') {
-      var reg = route.replace('/','\\/');
-      reg = reg.replace('*','[\\w-]+');
-      reg = reg.replace('%','([\\w-]+)');
-      routes.push({'route': route,
-                   'regexp': new RegExp('^'+reg+'[\\/?]?$','i'),
-                   'callback': callback});
-    } else if (route instanceof RegExp){
-      routes.push({'route': route.toString(),
-      'regexp': route,
-      'callback': callback});
+    if (typeof route === 'string') {
+      var regexp = route.replace('/','\\/')
+                        .replace('*','[\\w-]+')
+                        .replace('%','([\\w-]+)');
+      routes.push({
+        'route': route,
+        'regexp': new RegExp('^'+ regexp +'[\\/?]?$','i'),
+        'callback': callback
+      });
+    } else if (route instanceof RegExp) {
+      routes.push({
+        'route': route.toString(),
+        'regexp': route,
+        'callback': callback
+      });
     } else {
       throw Error('Route should be string or regular expression');
     }
@@ -74,7 +77,10 @@ var apress = (function(){
   var setErrorPage = function(errorFunction) {
     setup.error404 = errorFunction;
   };
-  //API for router
+
+  window.onhashchange = hashTest;
+
+  //API for the router
   return {
     addRoute: addRoute,
     hashTest: hashTest,
