@@ -9,9 +9,10 @@ module('Apress simple routing module',{
     this.testRoute = function(routeToRegister, routeToFire) {
       routeToFire = routeToFire || routeToRegister;
 
-      apress.addRoute(routeToRegister, function(param){
+      apress.addRoute(routeToRegister, function(param, param2){
         that.status = true;
         that.param = param;
+        that.param2 = param2;
       });
 
       window.location.hash = '#!' + routeToFire;
@@ -80,6 +81,14 @@ function() {
   this.testRoute('/qwe/%/yo', '/qwe/bar/yo');
   ok(this.status, 'proper root listener called');
   equal(this.param, 'bar', 'proper param passed to the listener');
+});
+
+test('should pass proper parameters `/qwe/%/yo/%`',
+function() {
+  this.testRoute('/qwe/%/yo/%', '/qwe/bar/yo/foo');
+  ok(this.status, 'proper root listener called');
+  equal(this.param, 'bar', 'proper param passed to the listener');
+  equal(this.param2, 'foo', 'proper param passed to the listener');
 });
 
 test('should pass proper parameter and understand wildcard `/hi/*/%`',

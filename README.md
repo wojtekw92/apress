@@ -19,7 +19,7 @@ In HTML:
 and then in JS:
 ```javascript
 apress.addRoute(
-  'hello/world', // route we're looking for, in this example it's http://mysite.com/hello/world
+  '/hello/world', // route we're looking for, in this example it's http://mysite.com#!/hello/world
   function(){    // listener that fires when the hash matches
     //some action...
   }

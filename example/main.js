@@ -18,6 +18,10 @@ apress.addRoute('/alert/%',function(param){
 apress.addRoute('/change/route',function(param){
   apress.setRoute('/change/route/new', false);
 });
+apress.addRoute('/product/%/photo/%',function(productId, photoId){
+  document.getElementById('content').innerHTML = 'product-id: ' +
+                                            productId+'<br> photo-id: '+photoId;
+});
 apress.setErrorPage(function(){
   document.getElementById('content').innerHTML = '<h1>ERROR 404!</h1>Page <b>' +
   apress.getRoute() + '</b> doesn\'t exist!';

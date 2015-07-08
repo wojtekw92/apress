@@ -50,7 +50,7 @@ var apress = (function(){
     if (typeof route === 'string') {
       var regexp = route.replace('/','\\/')
                         .replace('*','[\\w-]+')
-                        .replace('%','([\\w-]+)');
+                        .replace(/\%/g, '([\\w-]+)');
       routes.push({
         'route': route,
         'regexp': new RegExp('^'+ regexp +'[\\/?]?$','i'),
@@ -89,11 +89,21 @@ var apress = (function(){
     setup.routingEnable = !lock;
   };
 
+  var removeRoute = function(route) {
+    for(var i = 0, l = routes.length; i < l ; i++) {
+      if (routes[i].route === route) {
+        routes = routes.slice(i,1);
+        break;
+      }
+    }
+  };
+
   window.onhashchange = hashTest;
 
   //API for the router
   return {
     addRoute: addRoute,
+    removeRoute: removeRoute,
     hashTest: hashTest,
     setRoute: setRoute,
     getRoute: getRoute,
