@@ -1,31 +1,41 @@
 # apress
-Apress.js is a simple library for routing on cliet side in OPA projects.
-##how to use
-to use apress you need to add it your html file
+Apress.js is a simple library for routing on client side in SPA projects.
+
+## Instalation
+```bash
+$bower install apress --save
 ```
+
+## Usage
+In HTML:
+```html
 <script src="apress.js"></script>
 ```
-and in your js scripts add routes.
-```
-apress.addRoute('ala/ma',function(){alert('ala');});
-```
-the first parameter is route, we can use there * if we dont care what will be there
-or % if we wont to use this param as callback param.
-if we wont to force check the route for example when page is loading we can use
-```
-apress.hashTest();
-```
-###API
-`apress.addRoute(route,callback)` - adding route, route can be string or regexp
 
-`apress.hashTest()`- manual trigger of checking hash
+and then in JS:
+```javascript
+apress.addRoute(
+  'hello/world', // route we're looking for, in this example it's http://mysite.com/hello/world
+  function(){    // listener that fires when the hash matches
+    //some action...
+  }
+);
+
+apress.hashTest(); // this forces the app to fire listener for
+                  // the current route, useful for instance on app startup
+```
+
+## API
+`apress.addRoute(route,callback)` - adding route, route can be string or regexp. It can also contain one of the two special characters - `*` for wildcard (so everything will be matched in place of the asterix) or `%` for 'pass whatever it matches as a callback argument'
+
+`apress.hashTest()`- manual hash checking
 
 `apress.setRoute(route)` - setting new route manually
 
-`apress.getRoute()` -get actual route
+`apress.getRoute()` - get actual route
 
-`apress.setErrorPage(function)` - set function which is trigger when it cant find route
+`apress.setErrorPage(function)` - set function which is trigger when the route don't match any of the registered patterns
 
-##what to do next
-
-##why apress?
+## Why apress?
+There's no time to explain, just use it!
+![Apres-ski Livigno](img.png)

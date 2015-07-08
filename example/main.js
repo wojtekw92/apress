@@ -1,3 +1,6 @@
+'use strict';
+/* global apress */
+
 apress.addRoute('/',function(){
   document.getElementById('content').innerHTML = 'main page';
   });

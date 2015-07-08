@@ -1,0 +1,22 @@
+{
+  "name": "apress",
+  "version": "0.0.1",
+  "author": "Wojciech Woźniak <wwozniak92@gmail.com>",
+  "contributors": [
+    "Michał Budzyński <michal@virtualdesign.pl>"
+  ],
+  "repository": "https://github.com/wojtekw92/apress",
+  "devDependencies": {
+    "jshint": "^2.8.0",
+    "precommit-hook": "^3.0.0"
+  },
+  "scripts": {
+    "test-off": "node tests/apress-tests.js",
+    "lint": "node node_modules/jshint/bin/jshint ."
+  },
+  "pre-commit": [
+    "lint",
+    "validate",
+    "test"
+  ]
+}
