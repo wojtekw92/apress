@@ -55,10 +55,12 @@ var apress = (function(){
       routes.push({'route': route,
                    'regexp': new RegExp('^'+reg+'[\\/?]?$','i'),
                    'callback': callback});
-    } else {
+    } else if (route instanceof RegExp){
       routes.push({'route': route.toString(),
       'regexp': route,
       'callback': callback});
+    } else {
+      throw Error('Route should be string or regular expression');
     }
   };
 
