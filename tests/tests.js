@@ -1,6 +1,6 @@
 'use strict';
 
-/* global apress, module, test, ok, equal */
+/* global apress, module, test, ok, equal, throws */
 
 module('Apress simple routing module',{
   setup: function() {
@@ -105,4 +105,11 @@ function() {
   apress.hashTest();
 
   ok(this.status);
+});
+
+test('should throw error when route is not string or regexp',
+function() {
+  throws(function(){
+    apress.addRoute(997, function(param){});
+  });
 });
