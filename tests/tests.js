@@ -1,6 +1,6 @@
 'use strict';
 
-/* global apress, module, test, ok */
+/* global apress, module, test, ok, equal */
 
 module('Apress simple routing module',{
   setup: function() {
@@ -9,8 +9,9 @@ module('Apress simple routing module',{
     this.testRoute = function(routeToRegister, routeToFire) {
       routeToFire = routeToFire || routeToRegister;
 
-      apress.addRoute(routeToRegister, function(){
+      apress.addRoute(routeToRegister, function(param){
         that.status = true;
+        that.param = param;
       });
 
       window.location.hash = '#' + routeToFire;
@@ -19,6 +20,7 @@ module('Apress simple routing module',{
   },
   beforeEach:  function() {
     this.status = false;
+    this.param = false;
   }
 });
 
@@ -64,4 +66,25 @@ test('should understand wildcards in the middle of the routes - `/foo/*/bar`',
 function() {
   this.testRoute('/foo/*/bar', '/foo/barfoo/bar');
   ok(this.status);
+});
+
+test('should pass proper parameter `/param/%`',
+function() {
+  this.testRoute('/param/%', '/param/bar');
+  ok(this.status);
+  equal(this.param, 'bar');
+});
+
+test('should pass proper parameter in the middle `/qwe/%/yo`',
+function() {
+  this.testRoute('/qwe/%/yo', '/qwe/bar/yo');
+  ok(this.status);
+  equal(this.param, 'bar');
+});
+
+test('should pass proper parameter and understand wildcard `/hi/*/%`',
+function() {
+  this.testRoute('/hi/*/%', '/hi/bar/yo');
+  ok(this.status);
+  equal(this.param, 'yo');
 });
