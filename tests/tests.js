@@ -14,7 +14,7 @@ module('Apress simple routing module',{
         that.param = param;
       });
 
-      window.location.hash = '#' + routeToFire;
+      window.location.hash = '#!' + routeToFire;
       apress.hashTest();
     };
   },
@@ -101,7 +101,7 @@ function() {
     this.status = true;
   }.bind(this));
 
-  window.location.hash = '#PeperePutti';
+  window.location.hash = '#!PeperePutti';
   apress.hashTest();
 
   ok(this.status);
