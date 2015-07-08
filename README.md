@@ -2,7 +2,7 @@
 Apress.js is a simple library for routing on client side in SPA projects.
 
 ## Example
-Simples usage exmaple of Apress can be found [here](http://wojtekw92.github.io/apress/example)
+Simplest usage exmaple of Apress can be found [here](http://wojtekw92.github.io/apress/example).
 
 
 ## Instalation
