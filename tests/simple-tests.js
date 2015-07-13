@@ -1,6 +1,6 @@
 'use strict';
 
-/* global apress, module, test, ok, equal, throws */
+/* global apress, module, test, ok, throws */
 
 module('Apress simple routing module',{
   setup: function() {
@@ -13,6 +13,7 @@ module('Apress simple routing module',{
         that.status = true;
         that.param = param;
         that.param2 = param2;
+        apress.removeRoute(routeToRegister);
       });
 
       window.location.hash = '#!' + routeToFire;
@@ -54,53 +55,6 @@ function() {
 test('should run proper function for more complex route - `/foo/bar`',
 function() {
   this.testRoute('/foo/bar');
-  ok(this.status, 'proper root listener called');
-});
-
-test('should understand wildcards at the end of the routes - `/foo/*`',
-function() {
-  this.testRoute('/foo/*', '/foo/barfoo');
-  ok(this.status, 'proper root listener called');
-});
-
-test('should understand wildcards in the middle of the routes - `/foo/*/bar`',
-function() {
-  this.testRoute('/foo/*/bar', '/foo/barfoo/bar');
-  ok(this.status, 'proper root listener called');
-});
-
-test('should pass proper parameter `/param/%`',
-function() {
-  this.testRoute('/param/%', '/param/bar');
-  ok(this.status, 'proper root listener called');
-  equal(this.param, 'bar', 'proper param passed to the listener');
-});
-
-test('should pass proper parameter in the middle `/qwe/%/yo`',
-function() {
-  this.testRoute('/qwe/%/yo', '/qwe/bar/yo');
-  ok(this.status, 'proper root listener called');
-  equal(this.param, 'bar', 'proper param passed to the listener');
-});
-
-test('should pass proper parameters `/qwe/%/yo/%`',
-function() {
-  this.testRoute('/qwe/%/yo/%', '/qwe/bar/yo/foo');
-  ok(this.status, 'proper root listener called');
-  equal(this.param, 'bar', 'proper param passed to the listener');
-  equal(this.param2, 'foo', 'proper param passed to the listener');
-});
-
-test('should pass proper parameter and understand wildcard `/hi/*/%`',
-function() {
-  this.testRoute('/hi/*/%', '/hi/bar/yo');
-  ok(this.status, 'proper root listener called');
-  equal(this.param, 'yo', 'proper param passed to the listener');
-});
-
-test('should understand route defined by RegExp - /[A-Z][0-9]/',
-function() {
-  this.testRoute(/[A-Z][0-9]/, '/B5/');
   ok(this.status, 'proper root listener called');
 });
 
