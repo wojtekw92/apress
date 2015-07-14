@@ -37,6 +37,8 @@ apress.hashTest(); // this forces the app to fire listener for
 
 `apress.setRoute(route)` - setting new route manually
 
+`apress.removeRoute(route)` - remove previously defined route
+
 `apress.getRoute()` - get actual route
 
 `apress.setErrorPage(function)` - set function which is trigger when the route don't match any of the registered patterns
