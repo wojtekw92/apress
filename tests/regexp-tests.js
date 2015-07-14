@@ -31,3 +31,14 @@ function() {
   this.testRoute(/[A-Z][0-9]/, '/B5/');
   ok(this.status, 'proper route listener called');
 });
+
+test('should NOT call route when removeRoute was called on regexp route',
+function() {
+  this.testRoute(/[A-Z][0-9]/, '/B5/');
+  ok(this.status, 'proper route listener called');
+
+  this.status = false;
+  apress.removeRoute(/[A-Z][0-9]/);
+  apress.hashTest();
+  ok(!this.status, 'listener wasn\'t called');
+});
