@@ -92,7 +92,7 @@ var apress = (function(){
   var removeRoute = function(route) {
     for(var i = 0, l = routes.length; i < l ; i++) {
       if (routes[i].route === route) {
-        routes = routes.slice(i,1);
+        routes.splice(i,1);
         break;
       }
     }
