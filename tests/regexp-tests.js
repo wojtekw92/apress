@@ -29,5 +29,5 @@ module('Apress regexp routing module',{
 test('should understand route defined by RegExp - /[A-Z][0-9]/',
 function() {
   this.testRoute(/[A-Z][0-9]/, '/B5/');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
 });
