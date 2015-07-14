@@ -10,6 +10,7 @@ module('Apress simple routing module',{
       routeToFire = routeToFire || routeToRegister;
 
       apress.addRoute(routeToRegister, function(param, param2){
+        //console.log(routeToRegister);
         that.status = true;
         that.param = param;
         that.param2 = param2;
@@ -34,6 +35,16 @@ test('should run proper function for main route (`/`)', function() {
 test('should run proper function for simple route - `/foo`', function() {
   this.testRoute('/foo');
   ok(this.status, 'proper root listener called');
+});
+
+test('should NOT call route when removeRoute was called', function() {
+  this.testRoute('/foo2');
+  ok(this.status, 'proper root listener called');
+
+  this.status = false;
+  apress.removeRoute('/foo2');
+  apress.hashTest();
+  ok(!this.status, 'listener wasn\'t called');
 });
 
 test(
