@@ -10,7 +10,6 @@ module('Apress simple routing module',{
       routeToFire = routeToFire || routeToRegister;
 
       apress.addRoute(routeToRegister, function(param, param2){
-        //console.log(routeToRegister);
         that.status = true;
         that.param = param;
         that.param2 = param2;
