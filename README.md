@@ -4,7 +4,6 @@ Apress.js is a simple library for routing on client side in SPA projects.
 ## Example
 Simplest usage exmaple of Apress can be found [here](http://wojtekw92.github.io/apress/example).
 
-
 ## Instalation
 ```bash
 $bower install apress --save
