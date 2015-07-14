@@ -37,7 +37,8 @@ test('should run proper function for simple route - `/foo`', function() {
   ok(this.status, 'proper route listener called');
 });
 
-test('should NOT call route when removeRoute was called', function() {
+test('should NOT call route when removeRoute was called on simple route',
+function() {
   this.testRoute('/foo2');
   ok(this.status, 'proper route listener called');
 
