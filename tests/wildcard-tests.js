@@ -32,6 +32,17 @@ function() {
   ok(this.status, 'proper route listener called');
 });
 
+test('should NOT call route when removeRoute was called on wildcart route',
+function() {
+  this.testRoute('/foo/*', '/foo/bar');
+  ok(this.status, 'proper route listener called');
+
+  this.status = false;
+  apress.removeRoute('/foo/*');
+  apress.hashTest();
+  ok(!this.status, 'listener wasn\'t called');
+});
+
 test('should understand wildcards in the middle of the routes - `/foo/*/bar`',
 function() {
   this.testRoute('/foo/*/bar', '/foo/barfoo/bar');
