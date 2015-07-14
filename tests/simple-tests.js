@@ -29,17 +29,17 @@ module('Apress simple routing module',{
 
 test('should run proper function for main route (`/`)', function() {
   this.testRoute('/');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
 });
 
 test('should run proper function for simple route - `/foo`', function() {
   this.testRoute('/foo');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
 });
 
 test('should NOT call route when removeRoute was called', function() {
   this.testRoute('/foo2');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
 
   this.status = false;
   apress.removeRoute('/foo2');
@@ -52,7 +52,7 @@ test(
   'end - `/foobar/`',
 function() {
   this.testRoute('/foobar', '/foobar/');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
 });
 
 test(
@@ -60,13 +60,13 @@ test(
   '`/foo/something` is called',
 function() {
   this.testRoute('/foo', '/foo/bar');
-  ok(!this.status, 'root listener wasn\'t called');
+  ok(!this.status, 'route listener wasn\'t called');
 });
 
 test('should run proper function for more complex route - `/foo/bar`',
 function() {
   this.testRoute('/foo/bar');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
 });
 
 test('should run ErrorPage listener if route cannot be found',
