@@ -29,33 +29,33 @@ module('Apress wildcard routing module',{
 test('should understand wildcards at the end of the routes - `/foo/*`',
 function() {
   this.testRoute('/foo/*', '/foo/barfoo');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
 });
 
 test('should understand wildcards in the middle of the routes - `/foo/*/bar`',
 function() {
   this.testRoute('/foo/*/bar', '/foo/barfoo/bar');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
 });
 
 test('should pass proper parameter `/foo/%`',
 function() {
   this.testRoute('/foo/%', '/foo/bar');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
   equal(this.param, 'bar', 'proper param passed to the listener');
 });
 
 test('should pass proper parameter in the middle `/foo/%/yo`',
 function() {
   this.testRoute('/foo/%/yo', '/foo/bar/yo');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
   equal(this.param, 'bar', 'proper param passed to the listener');
 });
 
 test('should pass proper parameters `/foo/%/yo/%`',
 function() {
   this.testRoute('/foo/%/yo/%', '/foo/bar/yo/foo');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
   equal(this.param, 'bar', 'proper param passed to the listener');
   equal(this.param2, 'foo', 'proper param passed to the listener');
 });
@@ -63,6 +63,6 @@ function() {
 test('should pass proper parameter and understand wildcard `/foo/*/%`',
 function() {
   this.testRoute('/foo/*/%', '/foo/bar/yo');
-  ok(this.status, 'proper root listener called');
+  ok(this.status, 'proper route listener called');
   equal(this.param, 'yo', 'proper param passed to the listener');
 });
