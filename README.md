@@ -4,7 +4,6 @@ Apress.js is a simple library for routing on client side in SPA projects.
 ## Example
 Simplest usage exmaple of Apress can be found [here](http://wojtekw92.github.io/apress/example).
 
-
 ## Instalation
 ```bash
 $bower install apress --save
@@ -36,6 +35,8 @@ apress.hashTest(); // this forces the app to fire listener for
 `apress.hashTest()`- manual hash checking
 
 `apress.setRoute(route)` - setting new route manually
+
+`apress.removeRoute(route)` - remove previously defined route
 
 `apress.getRoute()` - get actual route
 
