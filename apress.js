@@ -89,7 +89,11 @@ var apress = (function(){
     setup.routingEnable = !lock;
   };
 
-  var removeRoute = function(route) {
+  var removeRoute = function(route, callback) {
+    if (route instanceof RegExp) {
+      route = route.toString();
+    }
+
     for(var i = 0, l = routes.length; i < l ; i++) {
       if (routes[i].route === route) {
         routes.splice(i,1);
