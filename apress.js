@@ -37,7 +37,6 @@ var apress = (function(){
           result = result.slice(1);
           routeExist = true;
           routes[i].callback.apply(this, result);
-          break;
         }
       }
       if (!routeExist) {
