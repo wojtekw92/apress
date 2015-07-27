@@ -91,15 +91,17 @@ var apress = (function(){
 
   var removeRoute = function(route, callback) {
     route = route.toString();
+    var i = 0;
+    var l = 0;
     if (typeof callback === 'function') {
-      for(var i = 0, l = routes.length; i < l ; i++) {
+      for(i = 0, l = routes.length; i < l ; i++) {
         if (routes[i].route === route && routes[i].callback === callback) {
           routes.splice(i,1);
           break;
         }
       }
     } else {
-      for(var i = 0, l = routes.length; i < l ; i++) {
+      for(i = 0, l = routes.length; i < l ; i++) {
         if (routes[i].route === route) {
           routes.splice(i,1);
           break;
