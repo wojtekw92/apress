@@ -1,6 +1,6 @@
 'use strict';
 
-/* global apress, module, test, ok, throws */
+/* global apress, module, test, ok*/
 
 module('Apress simple routing module',{});
 
