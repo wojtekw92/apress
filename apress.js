@@ -37,7 +37,6 @@ var apress = (function(){
           result = result.slice(1);
           routeExist = true;
           routes[i].callback.apply(this, result);
-          break;
         }
       }
       if (!routeExist) {
@@ -91,10 +90,21 @@ var apress = (function(){
 
   var removeRoute = function(route, callback) {
     route = route.toString();
-    for(var i = 0, l = routes.length; i < l ; i++) {
-      if (routes[i].route === route) {
-        routes.splice(i,1);
-        break;
+    var i = 0;
+    var l = 0;
+    if (typeof callback === 'function') {
+      for(i = 0, l = routes.length; i < l ; i++) {
+        if (routes[i].route === route && routes[i].callback === callback) {
+          routes.splice(i,1);
+          break;
+        }
+      }
+    } else {
+      for(i = 0, l = routes.length; i < l ; i++) {
+        if (routes[i].route === route) {
+          routes.splice(i,1);
+          break;
+        }
       }
     }
   };
